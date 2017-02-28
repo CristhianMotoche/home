@@ -1,0 +1,29 @@
+---
+- hosts: all
+  remote_user: root
+  tasks:
+  - name: Install packages
+    command: pacman -S "{{ item }}" --noconfirm
+    with_items:
+      - evolution
+      - git
+      - tmux
+      - stack
+      - neovim
+      - python-neovim
+      - keepassx
+      - rsync
+      - yaourt
+      - xclip
+      - zsh
+  - name: Install packages with yaourt
+    command: yaourt -S "{{ item }}" --noconfirm
+    with_items:
+      - dtrx
+      - google-chrome
+      - google-talkplugin
+  - name: Remove packages
+    command: pacman -R "{{ item }}" --noconfirm
+    with_items:
+      - hexchat
+      - thunderbird
